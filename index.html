@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nishika Chaudhary — CS Engineer & ML Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:      #faf8f5;
+  --surface: #f3f0eb;
+  --border:  #e2ddd7;
+  --accent:  #b5541e;
+  --accent2: #d4693a;
+  --text:    #1a1512;
+  --muted:   #7a6f65;
+  --card:    #ffffff;
+  --nav-bg:  rgba(250,248,245,0.9);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.6;overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 4rem;
+  background:var(--nav-bg);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--accent);letter-spacing:0.01em;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--accent);color:#fff;padding:0.5rem 1.2rem;border-radius:2px;font-size:0.76rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,transform 0.15s;}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:0 4rem;position:relative;overflow:hidden;background:var(--bg);}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:56px 56px;opacity:0.6;
+  mask-image:radial-gradient(ellipse 70% 60% at 60% 50%,black,transparent);
+}
+.hero-content{position:relative;max-width:760px;}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--accent);border:1px solid var(--accent);
+  padding:0.28rem 0.85rem;border-radius:2px;margin-bottom:1.8rem;
+  animation:fadeUp 0.5s ease both;
+}
+.hero-tag-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 1.5s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,5.5vw,5rem);line-height:1.05;letter-spacing:-0.02em;color:var(--text);margin-bottom:1.2rem;animation:fadeUp 0.5s 0.1s ease both;}
+h1 em{font-style:italic;color:var(--accent);}
+
+.hero-desc{font-size:1.05rem;color:var(--muted);max-width:500px;margin-bottom:0.6rem;font-weight:300;animation:fadeUp 0.5s 0.2s ease both;}
+.hero-sub{font-size:0.88rem;color:var(--muted);max-width:500px;margin-bottom:2.4rem;font-weight:400;animation:fadeUp 0.5s 0.25s ease both;}
+.hero-sub strong{color:var(--accent);font-weight:600;}
+
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.5s 0.3s ease both;}
+
+.btn-primary{background:var(--accent);color:#fff;padding:0.75rem 1.8rem;border-radius:2px;font-weight:600;font-size:0.84rem;letter-spacing:0.05em;text-decoration:none;transition:background 0.2s,transform 0.15s;display:inline-flex;align-items:center;gap:0.4rem;}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
+.btn-outline{border:1px solid var(--border);color:var(--text);padding:0.75rem 1.8rem;border-radius:2px;font-weight:500;font-size:0.84rem;letter-spacing:0.05em;text-decoration:none;background:var(--card);transition:border-color 0.2s,transform 0.15s;display:inline-flex;align-items:center;gap:0.4rem;}
+.btn-outline:hover{border-color:var(--accent);transform:translateY(-1px);}
+
+.hero-stats{
+  position:absolute;right:4rem;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:1px;
+  animation:fadeUp 0.5s 0.4s ease both;
+}
+.hero-stat{background:var(--card);border:1px solid var(--border);padding:1.2rem 1.4rem;min-width:155px;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+.hero-stat-num{font-family:'DM Serif Display',serif;font-size:1.9rem;color:var(--accent);display:block;line-height:1;}
+.hero-stat-label{font-size:0.68rem;color:var(--muted);font-weight:500;margin-top:0.3rem;display:block;}
+
+/* SECTIONS */
+section{padding:6rem 4rem;max-width:1100px;margin:0 auto;}
+.section-label{font-size:0.7rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.2vw,2.8rem);letter-spacing:-0.01em;margin-bottom:3rem;line-height:1.1;color:var(--text);}
+hr.divider{border:none;border-top:1px solid var(--border);margin:0 4rem;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.about-text p{color:var(--muted);font-weight:300;margin-bottom:1rem;font-size:0.98rem;line-height:1.85;}
+.about-text p strong{color:var(--text);font-weight:500;}
+.about-text p em{color:var(--accent);font-style:normal;font-weight:500;}
+
+.stats-block{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem;}
+.stat-card{background:var(--card);border:1px solid var(--border);padding:1.4rem;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent);display:block;line-height:1;margin-bottom:0.3rem;}
+.stat-label{font-size:0.76rem;color:var(--muted);font-weight:500;}
+
+.edu-block{background:var(--card);border:1px solid var(--border);padding:1.4rem;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+.edu-block h4{font-size:0.68rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.edu-item{padding:0.8rem 0;border-bottom:1px solid var(--border);}
+.edu-item:last-child{border-bottom:none;padding-bottom:0;}
+.edu-name{font-size:0.9rem;color:var(--text);font-weight:500;margin-bottom:0.2rem;}
+.edu-detail{font-size:0.78rem;color:var(--muted);}
+.edu-score{display:inline-block;margin-top:0.4rem;font-size:0.74rem;font-weight:600;color:var(--accent);background:#fdf0ea;padding:0.15rem 0.5rem;border-radius:2px;}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;}
+.project-card{background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:4px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05);}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+.project-card:hover{border-color:#d4cdc6;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.project-card:hover::before{transform:scaleX(1);}
+.project-tag{display:inline-block;font-size:0.67rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.7rem;}
+.project-card h3{font-family:'DM Serif Display',serif;font-size:1.25rem;margin-bottom:0.5rem;color:var(--text);}
+.project-card p{color:var(--muted);font-size:0.86rem;line-height:1.75;margin-bottom:1rem;font-weight:300;}
+.project-highlights{list-style:none;margin-bottom:1.1rem;}
+.project-highlights li{font-size:0.8rem;color:var(--muted);padding:0.25rem 0;padding-left:1rem;position:relative;line-height:1.6;}
+.project-highlights li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:0.72rem;}
+.project-highlights li strong{color:var(--text);font-weight:500;}
+.project-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem;}
+.tag{font-size:0.68rem;padding:0.2rem 0.55rem;border:1px solid var(--border);border-radius:2px;color:var(--muted);font-weight:500;background:var(--surface);}
+.project-link{color:var(--accent);text-decoration:none;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:0.3rem;transition:gap 0.2s;}
+.project-link:hover{gap:0.6rem;}
+
+/* EXPERIENCE */
+.exp-item{display:grid;grid-template-columns:180px 1fr;gap:3rem;padding:2.5rem 0;border-bottom:1px solid var(--border);align-items:start;}
+.exp-item:first-child{border-top:1px solid var(--border);}
+.exp-date{font-size:0.76rem;color:var(--muted);font-weight:500;margin-bottom:0.25rem;}
+.exp-loc{font-size:0.74rem;color:var(--muted);}
+.exp-role{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:0.15rem;}
+.exp-org{font-size:0.82rem;color:var(--accent);font-weight:600;margin-bottom:0.9rem;}
+.exp-bullets{list-style:none;}
+.exp-bullets li{font-size:0.86rem;color:var(--muted);padding:0.25rem 0;padding-left:1.2rem;position:relative;line-height:1.7;font-weight:300;}
+.exp-bullets li::before{content:'–';position:absolute;left:0;color:var(--accent);}
+.exp-bullets li strong{color:var(--text);font-weight:500;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.skill-group{background:var(--card);border:1px solid var(--border);padding:1.7rem;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+.skill-group h4{font-size:0.7rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.1rem;}
+.skill-list{list-style:none;}
+.skill-list li{font-size:0.88rem;color:var(--muted);padding:0.4rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem;font-weight:300;}
+.skill-list li:last-child{border-bottom:none;}
+.skill-list li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0;}
+
+/* ACHIEVEMENTS */
+.ach-list{display:flex;flex-direction:column;gap:1.2rem;}
+.ach-item{background:var(--card);border:1px solid var(--border);padding:1.6rem 2rem;border-radius:4px;display:flex;align-items:flex-start;gap:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);transition:transform 0.2s,box-shadow 0.2s;}
+.ach-item:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.07);}
+.ach-icon{font-size:1.3rem;flex-shrink:0;margin-top:0.1rem;}
+.ach-title{font-size:0.94rem;color:var(--text);font-weight:500;margin-bottom:0.3rem;}
+.ach-desc{font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:300;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
+.contact-info p{color:var(--muted);font-weight:300;line-height:1.85;margin-bottom:2rem;font-size:0.96rem;}
+.contact-links{display:flex;flex-direction:column;gap:0;}
+.contact-link{display:flex;align-items:center;gap:0.9rem;color:var(--muted);text-decoration:none;font-size:0.86rem;transition:color 0.2s;padding:0.75rem 0;border-bottom:1px solid var(--border);}
+.contact-link:first-child{border-top:1px solid var(--border);}
+.contact-link:hover{color:var(--accent);}
+.contact-link-icon{width:30px;height:30px;background:var(--surface);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;color:var(--muted);font-style:normal;}
+
+form{display:flex;flex-direction:column;gap:0.9rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+input,textarea{background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.82rem 1rem;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.88rem;width:100%;transition:border-color 0.2s;outline:none;}
+input::placeholder,textarea::placeholder{color:#bbb0a8;}
+input:focus,textarea:focus{border-color:var(--accent);}
+textarea{height:130px;resize:none;}
+button[type="submit"]{background:var(--accent);color:#fff;border:none;padding:0.82rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;letter-spacing:0.06em;border-radius:2px;cursor:pointer;text-transform:uppercase;transition:background 0.2s;align-self:flex-start;}
+button[type="submit"]:hover{background:var(--accent2);}
+
+/* FOOTER */
+footer{text-align:center;padding:2.2rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.76rem;letter-spacing:0.04em;background:var(--surface);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  section{padding:4rem 1.5rem;}
+  hr.divider{margin:0 1.5rem;}
+  #hero{padding:6rem 1.5rem 4rem;}
+  .hero-stats{display:none;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .projects-grid{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .exp-item{grid-template-columns:1fr;gap:0.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Nishika Chaudhary</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="Nishika_Resume.pdf" download class="nav-cta">↓ Resume</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Open to Internships · 2025–26
+    </div>
+    <h1>Building things<br/>that <em>actually work.</em></h1>
+    <p class="hero-desc">CS undergrad at JIIT Noida — working across ML pipelines, AI game engines, and full-stack web.</p>
+    <p class="hero-sub">CGPA <strong>8.1/10</strong> · IEEE Research Presenter · Mentored <strong>92+ students</strong> · 2nd year.</p>
+    <div class="hero-ctas">
+      <a href="Nishika_Resume.pdf" download class="btn-primary">↓ Download Resume</a>
+      <a href="#projects" class="btn-outline">View Projects →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">8.1</span>
+      <span class="hero-stat-label">CGPA / 10 at JIIT</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">96.2%</span>
+      <span class="hero-stat-label">Class XII PCM</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">92+</span>
+      <span class="hero-stat-label">Students Mentored</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">IEEE</span>
+      <span class="hero-stat-label">Research Presenter</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <p class="section-label">About</p>
+    <h2 class="section-title">Who I am</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm <strong>Nishika Chaudhary</strong>, a second-year B.Tech CSE student at JIIT Noida with a <em>CGPA of 8.1/10</em>. I build things end-to-end — from data pipelines and ML models to the frontend that makes output actually usable.</p>
+      <p>My work spans <strong>ML pipelines</strong>, <strong>AI game engines</strong>, <strong>full-stack web apps</strong>, and <strong>database systems</strong>. I've trained AQI prediction models on real environmental data, built chess AI that benchmarks multiple search algorithms simultaneously, and designed relational schemas for production e-commerce systems.</p>
+      <p>I was <strong>selected through competitive interview</strong> to mentor 92+ first-year students on CSS & Tailwind at IEEE TechBlocks — which means I can explain technical concepts clearly, not just implement them.</p>
+      <p>My research abstract on <strong>Cryptography</strong> was selected for poster presentation at IEEE SB JIIT's inaugural Student Research Forum (SRF 2026) — one of the few 2nd-year students at the conference.</p>
+      <p>Looking for internship roles in <strong>ML engineering</strong>, <strong>software development</strong>, or <strong>backend engineering</strong>.</p>
+    </div>
+    <div>
+      <div class="stats-block">
+        <div class="stat-card"><span class="stat-num">8.1</span><span class="stat-label">CGPA / 10 at JIIT</span></div>
+        <div class="stat-card"><span class="stat-num">96.2%</span><span class="stat-label">PCM in Class XII</span></div>
+        <div class="stat-card"><span class="stat-num">92+</span><span class="stat-label">Students mentored live</span></div>
+        <div class="stat-card"><span class="stat-num">2026</span><span class="stat-label">Available for internship</span></div>
+      </div>
+      <div class="edu-block">
+        <h4>Education</h4>
+        <div class="edu-item">
+          <div class="edu-name">JIIT Noida</div>
+          <div class="edu-detail">B.Tech Computer Science & Engineering · 2024–2028</div>
+          <span class="edu-score">CGPA: 8.1 / 10</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">Delhi Public School, Hapur</div>
+          <div class="edu-detail">PCM · Class XII · 2024</div>
+          <span class="edu-score">96.2%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <span class="project-tag">ML · Full Stack</span>
+      <h3>EcoWell — AQI Prediction Platform</h3>
+      <p>End-to-end ML system built from scratch: web scraping → data cleaning → feature engineering → model training → live dashboard.</p>
+      <ul class="project-highlights">
+        <li>Custom ML pipeline achieving <strong>76% prediction accuracy</strong>; evaluated on precision, recall, and performance metrics</li>
+        <li>Real-time AQI data via REST API integration for live environmental display</li>
+        <li>5-page frontend: AQI trends, policy insights, visualization analytics, contact</li>
+        <li>Decision Tree classifier recommending government interventions</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span><span class="tag">Flask</span><span class="tag">REST APIs</span><span class="tag">HTML/CSS/JS</span>
+      </div>
+      <a href="https://github.com/nishika070/ecoaware" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-tag">AI · Game Engine</span>
+      <h3>Chess Position Analyser</h3>
+      <p>Interactive chess tool that benchmarks multiple AI algorithms head-to-head on any position — not just a game, a research instrument.</p>
+      <ul class="project-highlights">
+        <li>Implemented Minimax, Alpha-Beta Pruning, Greedy, PVS — compared on execution time and decision efficiency</li>
+        <li>Alpha-Beta showed fastest response under depth constraints in benchmarks</li>
+        <li>Full Pygame UI: drag-and-drop, eval bar, preset positions, 3-panel layout</li>
+        <li>Custom board evaluation engine written from scratch</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">Python</span><span class="tag">Pygame</span><span class="tag">Flask</span><span class="tag">python-chess</span><span class="tag">Minimax</span><span class="tag">Alpha-Beta</span>
+      </div>
+      <a href="https://github.com/nishika070/Chess-position-analyser" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-tag">Database · Backend</span>
+      <h3>DBMS Unikart</h3>
+      <p>Fully functional e-commerce backend on a structured relational schema — product management, user auth, order handling, and transaction integrity.</p>
+      <ul class="project-highlights">
+        <li>Designed normalized relational schema from requirements</li>
+        <li>User auth, product CRUD, order management, and transaction flows</li>
+        <li>Demonstrates core DBMS: joins, constraints, indexing</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">JavaScript</span><span class="tag">MySQL</span><span class="tag">SQL</span>
+      </div>
+      <a href="https://github.com/nishika070/DBMS_unikart" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-tag">Frontend</span>
+      <h3>Insurance Solution Website</h3>
+      <p>Clean, responsive multi-page website built in pure HTML & CSS — no frameworks, demonstrating solid fundamentals.</p>
+      <ul class="project-highlights">
+        <li>Multi-page responsive layout without any CSS framework</li>
+        <li>Demonstrates command of core web fundamentals end-to-end</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">HTML</span><span class="tag">CSS</span>
+      </div>
+      <a href="https://github.com/nishika070/insurance-solution-website" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I've worked</h2>
+  </div>
+  <div class="reveal">
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Jan 2025</div>
+        <div class="exp-loc">Noida, India</div>
+      </div>
+      <div>
+        <div class="exp-role">Mentor / Volunteer</div>
+        <div class="exp-org">IEEE Student Branch JIIT — TechBlocks</div>
+        <ul class="exp-bullets">
+          <li><strong>Selected through competitive interview</strong> for mentoring role in 5-day flagship technical bootcamp</li>
+          <li>Taught <strong>CSS & Tailwind CSS</strong> fundamentals to <strong>92+ first-year students</strong> across live sessions</li>
+          <li>Conducted doubt-solving sessions and guided hands-on project-based learning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">Tech Stack</h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <h4>Languages</h4>
+      <ul class="skill-list">
+        <li>Python</li><li>C++</li><li>C</li><li>JavaScript</li><li>SQL</li><li>HTML / CSS</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Web & Frameworks</h4>
+      <ul class="skill-list">
+        <li>React</li><li>Node.js</li><li>Flask</li><li>Pygame</li><li>Unity</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>ML / Data</h4>
+      <ul class="skill-list">
+        <li>Scikit-learn</li><li>TensorFlow</li><li>Pandas / NumPy</li><li>Feature Engineering</li><li>Data Visualization</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Databases & Tools</h4>
+      <ul class="skill-list">
+        <li>MySQL</li><li>MongoDB</li><li>Git / GitHub</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Core CS</h4>
+      <ul class="skill-list">
+        <li>OOP</li><li>DBMS</li><li>Data Structures & Algorithms</li><li>Search Algorithms</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Currently Learning</h4>
+      <ul class="skill-list">
+        <li>Deep Learning</li><li>NLP</li><li>CNN / ANN Architecture</li><li>AI Agents</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="reveal">
+    <p class="section-label">Recognition</p>
+    <h2 class="section-title">Achievements & Certifications</h2>
+  </div>
+  <div class="ach-list reveal">
+    <div class="ach-item">
+      <div class="ach-icon">🏛️</div>
+      <div>
+        <div class="ach-title">IEEE SB JIIT — 1st Student Conference Research Forum (SRF 2026)</div>
+        <div class="ach-desc">Abstract on Cryptography selected for poster presentation at IEEE SB JIIT's inaugural research conference (Jan–Feb 2026). One of the few 2nd-year students selected to present.</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <div class="ach-icon">⚡</div>
+      <div>
+        <div class="ach-title">Data Structures & Algorithms — Coding Blocks</div>
+        <div class="ach-desc">Completed structured DSA course covering complexity analysis, recursion, and core problem-solving patterns.</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <div class="ach-icon">🤖</div>
+      <div>
+        <div class="ach-title">Artificial Intelligence & Machine Learning — OneStop</div>
+        <div class="ach-desc">Covered AI agents, NLP basics, CNN and ANN architecture, and backpropagation — applied directly in current projects.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Get in touch</h2>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <p>Open to internship opportunities in ML engineering, software development, or backend roles. If you're building something interesting, let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:nishikaofficial07@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          nishikaofficial07@gmail.com
+        </a>
+        <a href="https://github.com/nishika070" target="_blank" class="contact-link">
+          <span class="contact-link-icon">⌥</span>
+          github.com/nishika070
+        </a>
+        <a href="https://linkedin.com/in/nishika-chaudhary" target="_blank" class="contact-link">
+          <span class="contact-link-icon"><em>in</em></span>
+          linkedin.com/in/nishika-chaudhary
+        </a>
+      </div>
+    </div>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Name" required/>
+        <input type="email" name="email" placeholder="Email" required/>
+      </div>
+      <input type="text" name="subject" placeholder="Subject"/>
+      <textarea name="message" placeholder="Your message..."></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2025 Nishika Chaudhary &nbsp;·&nbsp; JIIT Noida, B.Tech CSE 2024–2028
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
